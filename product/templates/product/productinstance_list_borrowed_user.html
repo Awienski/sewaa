@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    Loaned Product
+{% endblock%}
+
+{% block body %}
+    <div class="col-md-8 offset-md-1">
+        <h1>Borrowed Product by {{user}} </h1>
+        <hr>
+        <ul>
+            {% for product in products %}
+                <li>{{ product.product }} Batas waktu pengembalian {{product.due_back}}</li>
+            {% endfor %}
+        </ul>
+    </div>
+{% endblock %}

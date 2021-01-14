@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    Add
+{% endblock%}
+
+{% block body %}
+    <div class="col-md-8 offset-md-1">
+        <h1>Add Your Product</h1>
+        <hr>
+        <form action="">
+            <label for="fname">Name :</label><br>
+            <input type="text" id="fname" name="fname" ><br>
+            <label for="lname">Brand :</label><br>
+            <input type="text" id="lname" name="lname" ><br>
+            <label for="price">Price :</label><br>
+            <input type="text" id="price" name="price" ><br>
+            <label for="url">image_url :</label><br>
+            <input type="text" id="url" name="url" ><br>
+            <label for="Category">Category:</label><br>
+            <input list="Category" name="Category" id="browser">
+            <datalist id="Category">
+                <option value="Outdoor">
+                <option value="Kamera">
+            </datalist><br>
+            <label for="desc">Description :</label><br>
+            <textarea name="desc" id="" cols="30" rows="10"></textarea><br>
+            <a href="{% url 'product:add' %}" class="btn btn-success">Add</a>
+        </form>
+    </div>
+{% endblock %}

@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    Profile
+{% endblock%}
+
+{% block body %}
+    <div class="col-md-8 offset-md-1">
+        <h1>{{ user.first_name }}'s Products <a href="{% url 'product:add' %}" class="btn btn-success">Add</a></h1>
+        <h5>Saldo OVOO : 123000</h5>
+        <hr>
+        <div class="row">
+            {% for product in ownedprodcuts %}
+                    <div class="col">
+                        <div class="card" style="width: 18rem;">
+                            <img src="{{ product.image_url }}" class="card-img-top" alt="...">
+                            <div class="card-body">
+                            <h5 class="card-title">{{ product.name }}</h5>
+                            {% if product.id == 6 %}
+                                <p class="card-text">Status : Need your confirmation! </p>
+                            {% else %}
+                                <p class="card-text">Status : Available</p>
+                            {% endif %}
+                            <a href="{% url 'product:update' id=product.id %}" class="btn btn-primary">Update</a>
+                            <a href="{% url 'product:delete' id=product.id %}" class="btn btn-danger">Delete</a>
+                            {% if product.id == 6 %}
+                                <a href="{% url 'product:productchatdetail' id=product.id %}" class="btn btn-success">Confirm</a>
+                            {% endif %}
+                            </div>
+                        </div>
+                    </div>
+                
+            {% endfor %}
+        </div>
+    </div>
+    <div class="col-md-8 offset-md-1">
+        <h1>Borrowed Product by {{user}} </h1>
+        <hr>
+        <ul>
+            {% for product in loanedproducts %}
+                <li>{{ product.product }} Batas waktu pengembalian {{product.due_back}}</li>
+            {% endfor %}
+        </ul>
+    </div>
+{% endblock %}

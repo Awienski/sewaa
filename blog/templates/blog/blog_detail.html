@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+
+{% block title %}
+    {{ blog.title }}
+{% endblock %}
+
+{% block body %}
+<div class="col-md-8 offset-md-2">
+    <h1>{{ blog.title }}</h1>
+    <small>
+        {{ blog.created_on.date }} |&nbsp;
+        Categories:&nbsp;
+        {% for category in categories %}
+            <a href="{% url 'blog:blog_category' category=category.name %}">{{ category.name }}</a>
+        {% endfor %}
+    </small>
+    <p>{{ blog.text | linebreaks }}</p>
+    <h3>Leave a comment:</h3>
+    <form action="{% url 'blog:comment' blog.id %}" method="post">
+        {% csrf_token %}
+        <textarea placeholder="leave a comment" name="comment" id="comment" cols="30" rows="10"></textarea>
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+    <h3>Comments:</h3>
+    {% for comment in comments %}
+    <p>
+        {{ comment.text }} {{comment.created_on.date }}
+    </p>
+    <hr>
+    {% endfor %}
+</div>
+{% endblock %}

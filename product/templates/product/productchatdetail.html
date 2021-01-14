@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    {{ product.name }}
+{% endblock%}
+
+{% block body %}
+    <div class="col-md-8 offset-md-1">
+        <h1>{{ product.name }}</h1>
+        <hr>
+        <div class="row">
+            <div class="col-md-4">
+                <div class="card" style="width: 18rem;">
+                    <img src="{{ product.image_url }}" class="card-img-top" alt="...">
+                    <div class="card-body">
+                    <h5 class="card-title">{{ product.name }}</h5>
+                    <p class="card-text">Rp.{{ product.price }}/24jam</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-8">
+                <form action="{% url 'product:chat' product.id %}" method="post">
+                    {% csrf_token %}
+                    <textarea placeholder="leave a chat" name="chat" id="chat" cols="30" rows="10"></textarea>
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                </form>
+                <h3>chats:</h3>
+                {% for chat in chats %}
+                <p>
+                    {{ chat.text }} {{chat.created_on.date }}
+                </p>
+                <hr>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+{% endblock %}

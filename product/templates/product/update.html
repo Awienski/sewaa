@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    Add
+{% endblock%}
+
+{% block body %}
+    <div class="col-md-8 offset-md-1">
+        <h1>Update {{ product.name}}</h1>
+        <hr>
+        <form action="">
+            <label for="fname">Name :</label><br>
+            <input type="text" id="fname" name="fname" value="{{ product.name }}"><br>
+            <label for="brand">Brand :</label><br>
+            <input type="text" id="brand" name="brand" value="{{ product.brand}}"><br>
+            <label for="price">Price :</label><br>
+            <input type="text" id="price" name="price" value="{{ product.price }}"><br>
+            <label for="url">image_url :</label><br>
+            <input type="text" id="url" name="url" value="{{ product.image_url }}"><br>
+            <label for="Category">Category:</label><br>
+            <input type="text" id="url" name="url" value="{{ product.category }}"><br>
+            <label for="desc">Description :</label><br>
+            <textarea name="desc" id="" cols="30" rows="10">{{ product.desc }}</textarea><br>
+            <a href="{% url 'product:profile' %}" class="btn btn-primary">Update</a>
+        </form>
+    </div>
+{% endblock %}
